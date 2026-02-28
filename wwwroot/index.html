@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QvartApp | Smart Building Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+                <span>QvartApp</span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li class="active" onclick="showSection('view-zgrade', this)">
+                        <i class="fas fa-chart-pie"></i> Dashboard
+                    </li>
+                    <li onclick="showSection('add-zgrada', this)">
+                        <i class="fas fa-plus-square"></i> Nova Zgrada
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <p>Indeks: 19404</p>
+                <p>Milica Stojanović</p>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchZgrada" placeholder="Pretraži adrese..." onkeyup="filterZgrade()">
+                </div>
+                <div class="user-profile">
+                    <div class="status-indicator"></div>
+                    <span>Server Online</span>
+                </div>
+            </header>
+
+            <section id="view-zgrade" class="content-section">
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="icon blue"><i class="fas fa-building"></i></div>
+                        <div class="info">
+                            <span class="label">Ukupno Zgrada</span>
+                            <h2 id="stat-zgrade">0</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon green"><i class="fas fa-wallet"></i></div>
+                        <div class="info">
+                            <span class="label">Ukupni Budžet</span>
+                            <h2 id="stat-budzet">0 RSD</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon red"><i class="fas fa-tools"></i></div>
+                        <div class="info">
+                            <span class="label">Prijavljeni Kvarovi</span>
+                            <h2 id="stat-kvarovi">0</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-header">
+                    <h2>Registrovane Zgrade</h2>
+                </div>
+                <div id="zgrade-list" class="grid-container"></div>
+            </section>
+
+            <section id="add-zgrada" class="content-section hidden">
+                <div class="form-container">
+                    <div class="form-card">
+                        <h2><i class="fas fa-city"></i> Registracija Nove Zgrade</h2>
+                        <form id="form-nova-zgrada">
+                            <div class="input-group">
+                                <label>Adresa Objektа</label>
+                                <input type="text" id="adresa" placeholder="npr. Bulevar Nemanjića 12" required>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Broj Stanova</label>
+                                    <input type="number" id="brojStanova" placeholder="12" required>
+                                </div>
+                                <div class="input-group">
+                                    <label>Inicijalni Budžet (RSD)</label>
+                                    <input type="number" id="budzet" placeholder="50000" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-submit">Kreiraj Zgradu</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <div id="modal-kvarovi" class="modal hidden">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 id="modal-zgrada-naslov">Upravljanje</h2>
+                        <button class="close-btn" onclick="closeModal()">&times;</button>
+                    </div>
+                    
+                    <div id="statistika-trosak" class="modal-stat"></div>
+
+                    <div class="kvar-entry-card" style="background: #f8fafc; padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #e2e8f0;">
+                        <h3 style="margin-top: 0; margin-bottom: 15px; color: #1e293b;">Prijavi Novu Intervenciju</h3>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <input type="text" id="kvar-opis" placeholder="Opis kvara (min. 5 karaktera)..." style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1;">
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center;">
+                                <input type="number" id="kvar-trosak" placeholder="Cena (RSD)" style="padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1;">
+                                
+                                <div style="display: flex; align-items: center; gap: 10px; background: white; padding: 10px; border-radius: 8px; border: 1px solid #cbd5e1;">
+                                    <input type="checkbox" id="kvar-hitno" style="width: 20px; height: 20px; cursor: pointer;">
+                                    <label for="kvar-hitno" style="font-weight: 600; cursor: pointer; font-size: 14px;">Hitno 🚨</label>
+                                </div>
+                            </div>
+                            
+                            <button onclick="prijaviKvar()" class="btn-action" style="width: 100%; margin: 0; background: #6366f1; color: white; font-weight: bold; padding: 12px; border-radius: 8px; border: none; cursor: pointer;">
+                                <i class="fas fa-plus"></i> DODAJ INTERVENCIJU
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+                        <button onclick="resiHitne()" class="btn-warn" style="background: #ef4444; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <i class="fas fa-bolt"></i> REŠI SVE HITNE
+                        </button>
+                        
+                        <button onclick="preuzmiIzvestaj()" class="btn-secondary" style="background: #0f172a; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <i class="fas fa-chart-bar"></i> IZVEŠTAJ (AGREGACIJA)
+                        </button>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead> 
+                                <tr>
+                                    <th>Kvar / Opis</th>
+                                    <th>Trošak</th>
+                                    <th>Status</th>
+                                    <th>Akcija</th>
+                                </tr>
+                            </thead>
+                            <tbody id="kvarovi-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

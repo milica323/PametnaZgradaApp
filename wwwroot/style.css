@@ -1,0 +1,133 @@
+:root {
+    --bg: #0b0f19;
+    --sidebar-bg: #111827;
+    --card-bg: #1f2937;
+    --primary: #6366f1;
+    --accent: #10b981;
+    --danger: #ef4444;
+    --text-white: #f3f4f6;
+    --text-dim: #9ca3af;
+    --border: rgba(255, 255, 255, 0.05);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+body { background: var(--bg); color: var(--text-white); overflow-x: hidden; }
+
+.app-container { display: flex; height: 100vh; }
+
+/* Sidebar */
+.sidebar { width: 280px; background: var(--sidebar-bg); border-right: 1px solid var(--border); padding: 30px 20px; display: flex; flex-direction: column; }
+.logo { display: flex; align-items: center; gap: 15px; font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 50px; }
+.logo-icon { background: var(--primary); color: white; width: 35px; height: 35px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+
+.nav-links { list-style: none; }
+.nav-links li { padding: 15px; border-radius: 12px; cursor: pointer; color: var(--text-dim); transition: 0.3s; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; }
+.nav-links li:hover { background: rgba(255,255,255,0.05); color: white; }
+.nav-links li.active { background: var(--primary); color: white; box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3); }
+.sidebar-footer { mt: auto; padding-top: 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-dim); }
+
+/* Main Content */
+.main-content { flex: 1; padding: 30px; overflow-y: auto; }
+.top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+.search-box { background: var(--card-bg); padding: 10px 20px; border-radius: 15px; width: 400px; display: flex; align-items: center; gap: 10px; border: 1px solid var(--border); }
+.search-box input { background: transparent; border: none; color: white; width: 100%; outline: none; }
+
+/* Stats Cards */
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
+.stat-card { background: var(--card-bg); padding: 25px; border-radius: 20px; display: flex; align-items: center; gap: 20px; border: 1px solid var(--border); }
+.stat-card .icon { width: 50px; height: 50px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.icon.blue { background: rgba(99, 102, 241, 0.1); color: #818cf8; }
+.icon.green { background: rgba(16, 185, 129, 0.1); color: #34d399; }
+.icon.red { background: rgba(239, 68, 68, 0.1); color: #f87171; }
+.stat-card .label { color: var(--text-dim); font-size: 14px; }
+
+/* Building Cards */
+.grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.card { background: var(--card-bg); padding: 25px; border-radius: 24px; border: 1px solid var(--border); position: relative; transition: 0.3s; }
+.card:hover { transform: translateY(-10px); border-color: var(--primary); }
+.card h3 { font-size: 18px; margin-bottom: 15px; }
+.card-info { margin-bottom: 20px; }
+.card-info p { font-size: 14px; color: var(--text-dim); margin-bottom: 5px; }
+.btn-primary { background: var(--primary); color: white; border: none; padding: 12px; width: 100%; border-radius: 12px; cursor: pointer; font-weight: 600; }
+
+/* Modal */
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+.modal-content { background: #111827; width: 100%; max-width: 800px; border-radius: 24px; padding: 35px; position: relative; max-height: 90vh; overflow-y: auto; border: 1px solid var(--primary); }
+.modal-header { display: flex; justify-content: space-between; margin-bottom: 25px; }
+.close-btn { background: transparent; border: none; color: white; font-size: 30px; cursor: pointer; }
+
+/* Forms & Tables */
+.hidden { display: none !important; }
+input[type="text"], input[type="number"] { width: 100%; padding: 12px; background: #0b1f2e; border: 1px solid #374151; border-radius: 10px; color: white; margin-top: 5px; }
+.btn-submit { background: var(--accent); color: white; border: none; padding: 15px; width: 100%; border-radius: 12px; cursor: pointer; margin-top: 20px; font-weight: 700; }
+table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+th { text-align: left; padding: 12px; color: var(--text-dim); border-bottom: 1px solid var(--border); }
+td { padding: 15px 12px; border-bottom: 1px solid var(--border); font-size: 14px; }
+.status-tag { padding: 4px 10px; border-radius: 8px; font-size: 11px; font-weight: bold; }
+.status-resen { background: rgba(16, 185, 129, 0.2); color: var(--accent); }
+
+/* Kontejner za formu */
+.kvar-form-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #475569;
+}
+
+/* Grid za donja dva dugmeta */
+.action-buttons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+/* Osnovni stil za svu dugmad */
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Specifične boje */
+.btn-dodaj {
+    background-color: #6366f1; /* Indigo plava */
+    color: white;
+}
+
+.btn-dodaj:hover { background-color: #4f46e5; }
+
+.btn-resi-hitne {
+    background-color: #ef4444; /* Crvena */
+    color: white;
+}
+
+.btn-resi-hitne:hover { background-color: #dc2626; }
+
+.btn-izvestaj {
+    background-color: #0f172a; /* Tamno teget/crna */
+    color: white;
+}
+
+.btn-izvestaj:hover { background-color: #1e293b; }

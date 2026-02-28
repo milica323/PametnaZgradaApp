@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "ADqCviivzKITJ3OX11wJSqPn6GM5M9TuuCDN+MIeCos=",
+  "Source": "SmartBuildingServer",
+  "BasePath": "_content/SmartBuildingServer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "SmartBuildingServer\\wwwroot",
+      "Source": "SmartBuildingServer",
+      "ContentRoot": "C:\\Users\\Dell\\SmartBuildingServer\\wwwroot\\",
+      "BasePath": "_content/SmartBuildingServer",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Dell\\SmartBuildingServer\\wwwroot\\app.js",
+      "SourceId": "SmartBuildingServer",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dell\\SmartBuildingServer\\wwwroot\\",
+      "BasePath": "_content/SmartBuildingServer",
+      "RelativePath": "app.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app.js"
+    },
+    {
+      "Identity": "C:\\Users\\Dell\\SmartBuildingServer\\wwwroot\\index.html",
+      "SourceId": "SmartBuildingServer",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dell\\SmartBuildingServer\\wwwroot\\",
+      "BasePath": "_content/SmartBuildingServer",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\Dell\\SmartBuildingServer\\wwwroot\\style.css",
+      "SourceId": "SmartBuildingServer",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Dell\\SmartBuildingServer\\wwwroot\\",
+      "BasePath": "_content/SmartBuildingServer",
+      "RelativePath": "style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\style.css"
+    }
+  ]
+}
